@@ -1,0 +1,46 @@
+h1. mvn-colorfilter
+
+An @awk@ colorizing filter for use with @mvn@.
+
+h2. How does it work?
+
+It is a mere @awk@ script, that understands the general structure of @mvn@ 's output and recognizes several elements, colorizes each part with escape codes, and outputs the result in the console.
+
+Along with a shell script aimed at being used as an alias instead of @mvn@.
+
+h2. Installation
+
+To install the files, use the following command:
+
+bc. sudo make install
+
+p. This will install into @/usr/local/bin/@, but you can change it by adding @PREFIX=/usr/bin@ as an argument.
+The Bash completion hook will get installed into @/etc/bash_completion.d/@, you can change it by adding @COMPLETION_FOLDER=/your/path@ as an argument.
+
+You can optionally make an alias to use @mvn-color@ instead of raw @mvn@. To do so append the following line in your @~/.bashrc@:
+
+bc. alias mvn="mvn-color"
+alias mvn-nocolor="$(which mvn)"
+
+h2. Usage
+
+Use @mvn-color@ as a drop-in replacement for @mvn@, see the alias presented in the installation section.
+
+bc. mvn-color {arguments}
+
+p. Or use with manually appending the color filter after each @mvn@ invocation:
+
+bc. mvn {arguments} | mvn-colorfilter
+
+p. The shell script is aimed at solving some problems that can arise when you press Ctrl+C with a forked @java@ task.
+Please try and report any such problems, and tell me if they are solved with the @mvn-color@ script.
+
+h2. Uninstallation
+
+Simply type:
+
+bc. sudo make uninstall
+
+p. Don't forget to use the same @PREFIX@ and @COMPLETION_FOLDER@ as at installation (normally not mentioned).
+
+*This won't remove the alias* you may have installed yourself. Do it by hand.

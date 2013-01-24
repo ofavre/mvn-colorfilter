@@ -1,0 +1,33 @@
+#!/bin/sh
+
+transmit() {
+	kill -s "$1" "$pid_mvn"
+}
+
+tmp="$(mktemp "/tmp/mvn-color.XXXXXX")"
+rm "$tmp"
+mkfifo "$tmp"
+
+exec 3<&0 # save stdin, to pass it to mvn
+exec 0<&- # close stdin for this script
+mvn "$@" 0<&3 >"$tmp" 2>&1 &
+pid_mvn="$!"
+
+mvn-colorfilter <"$tmp" &
+pid_filter="$!"
+
+saved_trap="$(trap)"
+trap "transmit HUP" HUP
+trap "transmit INT" INT
+trap "transmit TERM" TERM
+trap "transmit QUIT" QUIT
+
+wait "$pid_filter"
+wait "$pid_mvn"
+rtn="$?" # return status from mvn
+
+rm "$tmp"
+
+eval "$saved_trap"
+
+exit "$rtn"
