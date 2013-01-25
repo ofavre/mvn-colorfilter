@@ -184,7 +184,7 @@ function coloring_log4j(text, restoreColor,     parts)
 		} else if (parts[1] == "FATAL") {
 			tagcolor = "\x1B[41;37;1m"
 		}
-		printf "%s", tagcolor "[" parts[1] "] " "\x1B[0m" colorize_inner(parts[2], restoreColor);
+		printf "%s", tagcolor "[" parts[1] "] " "\x1B[0m" colorize_inner(parts[2], "\x1B[0m");
 	} else {
 		printf "%s", colorize_inner($0, "\x1B[0m");
 	}
