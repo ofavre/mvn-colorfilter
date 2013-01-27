@@ -67,7 +67,7 @@ function colorize_mavenisms(text, restoreColor,     parts)
 function colorize_files(text, restoreColor,     parts)
 {
 	if (0 != match(text, /^(|.*\s)(\/[^[:space:]:]+)(\s.*|)$/, parts) && 0 == match(parts[2], /^[0-9]+$/)) { # file:123: Stuff. With file not only composed of digits (prevent time like 13:37:42,314 from matching)
-		return colorize_inner(parts[1], restoreColor) "\x1B[35m" parts[2] restoreColor colorize_inner(parts[4], restoreColor);
+		return colorize_inner(parts[1], restoreColor) "\x1B[35m" parts[2] restoreColor colorize_inner(parts[3], restoreColor);
 	} else {
 		return text;
 	}
