@@ -76,7 +76,7 @@ function colorize_javaerrors(text, restoreColor,     parts)
 {
 	if (text == "Caused by: ") {
 		return "\x1B[35;1m" text restoreColor;
-	} else if (0 != match(text, /^(.*)\yException in thread "([^"]+)"\y(.*)$/, parts)) {
+	} else if (0 != match(text, /^(.*)\yException in thread "([^"]+)"(\s.*|)$/, parts)) {
 		return colorize_inner(parts[1], restoreColor) "\x1B[35;1m" "Exception in thread \"" "\x1B[36;22m" parts[2] "\x1B[35;1m" "\"" restoreColor colorize_javaerrors(parts[3], restoreColor)
 	#                                     at     com.package.             Classname              .function                    ( file   :line    )
 	#                            1111111122222234555555555555555555555555466666666666666666666666777777777777777777777777777738889999999800000000888888888888881111
