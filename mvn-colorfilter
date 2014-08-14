@@ -1,4 +1,4 @@
-#!/usr/bin/awk -f
+#!/usr/bin/gawk -f
 # [n];km	color n, style k
 # style	0	reset
 # 	1	bold

@@ -1,10 +1,10 @@
 h1. mvn-colorfilter
 
-An @awk@ colorizing filter for use with @mvn@.
+A @gawk@ colorizing filter for use with @mvn@.
 
 h2. How does it work?
 
-It is a mere @awk@ script, that understands the general structure of @mvn@ 's output and recognizes several elements, colorizes each part with escape codes, and outputs the result in the console.
+It is a mere @gawk@ script, that understands the general structure of @mvn@ 's output and recognizes several elements, colorizes each part with escape codes, and outputs the result in the console.
 
 Along with a shell script aimed at being used as an alias instead of @mvn@.
 
