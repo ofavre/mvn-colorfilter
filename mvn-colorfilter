@@ -160,7 +160,9 @@ function coloring_log4j(text, restoreColor,     parts)
 }
 
 {
-	if (0 != match($0, /\[INFO\] BUILD SUCCESSFUL/, parts)) {
+	if (0 != match($0, /\r/)) {
+		printf "%s", $0;
+	} else if (0 != match($0, /\[INFO\] BUILD SUCCESSFUL/, parts)) {
 		printf "\x1B[32;1m%s", parts[0];
 	} else if (0 != match($0, /\[ERROR\] BUILD FAILURE/, parts)) {
 		printf "\x1B[31;1m%s", parts[0];
